@@ -21,7 +21,7 @@ const Bag = ({pokemon, id, name, image, type, height, hp, att, spd, def, searchP
                                     </div>
                                     <div className='col'>
                                         <button 
-                                        className='remove btn btn-warning btn-outline-dark text-white' 
+                                        className='remove btn btn-danger btn-outline-dark text-white' 
                                         onClick={() => releasePokemon(pokemon.id)}
                                         >
                                             &times;

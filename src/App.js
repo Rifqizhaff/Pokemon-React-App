@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Homepage from "./components/home-page/Homepage";
 import Bag from "./components/bag-page/Bag";
 import Pokemon, {searchPoke, setSearchPoke} from "./components/pokemonn/Pokemon";
 import './App.css';
@@ -88,9 +87,6 @@ function App() {
               <Switch>
                 <Route exact path="/">
                   <Index />
-                </Route>
-                <Route exact path="/about">
-                  <About />
                 </Route>
                 <Route exact path="/api/v2/pokemon">
                 <div className='bag-navb mb-5'>
@@ -201,16 +197,6 @@ function Index() {
 
 }
 
-function About() {
-  return (
-    <div>
-      <p>
-        Aplikasi simple ini dibuat oleh Rifqi Zhafar, dengan menggunakan React JS dan framework Bootstrap V5.
-      </p>
-    </div>
-  );
-
-}
 
 function NoMatch() {
   return <h2>404, Halaman tidak ditemukan!</h2>;
