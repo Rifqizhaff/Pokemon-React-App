@@ -108,7 +108,7 @@ function App() {
                         >
                         
                         </input>
-                        <input type="submit" value="add"></input>
+                        <input type="submit" value="Search"></input>
                         {/* searchPoke: {searchPoke} */}
                     </form>
                 </div>
