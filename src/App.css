@@ -1,7 +1,39 @@
 .apps {
+  color: black;
+}
+.apps .content{
   text-align: center;
   margin: auto;
   width: 50%;
-  padding: 10px;
-  color: aliceblue;
+  margin-top: 50px;
 }
+nav {
+  background-color: #F0EDEE;
+}
+nav .container-fluid{
+  padding-left: 200px;
+  padding-right: 200px;
+}
+.apps .content main{
+  margin-top: 50px;
+}
+.indexbtn button{
+  color: #fff;
+}
+
+a:link{
+  text-decoration: none;
+  color: #000;
+}
+
+/* visited link */
+a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+/* mouse over link */
+a:hover {
+  color: #000;
+}
+

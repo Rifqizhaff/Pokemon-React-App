@@ -1,0 +1,15 @@
+.homee {
+    color: black;
+}
+.homee .home-navb button{
+    background-color: #EAEAEA;
+}
+.homee .home-content{
+    margin-top: 50px;
+}
+.homee .home-content .poke-content{
+    margin-top: 50px;
+}
+.homee .home-content .poke-content .card{
+    /* background-color: #EAEAEA; */
+}

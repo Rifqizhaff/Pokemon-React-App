@@ -1,0 +1,13 @@
+.baag {
+    color: black;
+}
+.baag .bag-navb button{
+    background-color: #EAEAEA;
+}
+.baag .bag-content .detail-poke{
+    margin-top: 50px;
+    margin-right: 0;
+}
+.baag .bag-content .detail-poke .card{
+    /* width: 18rem; */
+}
