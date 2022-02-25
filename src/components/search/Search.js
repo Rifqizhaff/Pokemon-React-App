@@ -206,7 +206,7 @@ const Search = () => {
           <div className='bag-navb mb-5'>
                     <button 
                     type="button" 
-                    className="btn btn-secondary"
+                    className="btn btn-secondary btn-outline-dark"
                     // onClick={()=> handleBag()}
                     // {
                     //     pathname: "/api/v2/bag",
@@ -233,7 +233,6 @@ const Search = () => {
                         >
                         </input>
                         <input type="submit" value="Search"></input>
-                        
                     </form>
                 </div>
 

@@ -27,7 +27,7 @@ function App() {
                 </Route>
                 <Route exact path="/bag">
                   <div className='bag-navb'>
-                      <button type="button" class="btn btn-secondary">
+                      <button type="button" class="btn btn-secondary btn-outline-dark mb-3">
                           <a className="nav-link" ><Link to='/'> BACK </Link></a>
                       </button>
                   </div>
