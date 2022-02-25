@@ -1,13 +1,96 @@
 .baag {
-    color: black;
+    color: white;
 }
 .baag .bag-navb button{
     background-color: #EAEAEA;
 }
 .baag .bag-content .detail-poke{
-    margin-top: 50px;
-    margin-right: 0;
+    margin-top: 20px;
+
 }
 .baag .bag-content .detail-poke .card{
-    /* width: 18rem; */
+    background-color: #f3f9f9;
+    position: relative;
+    display: flex;
+    border-radius: 10px;
+    width: 18rem;
+    margin-bottom: 20px;
+    margin-right: 50px;
+    transition: 0.5s ease-in-out;
+}
+.baag .bag-content .detail-poke .card:hover{
+    transform: translateY(-10px);
+}
+.baag .bag-content .detail-poke .card:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(161, 168, 167, 0.5), rgb(35, 35, 36));
+    z-index: 2;
+    transition: 0.5s all;
+    opacity: 0;
+}
+.baag .bag-content .detail-poke .card:hover:before{
+    opacity: 1;
+    /* filter: blur(8px); */
+}
+.baag .bag-content .detail-poke .card .bgimg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.baag .bag-content .detail-poke .card:hover .bgimg img{
+    filter: blur(4px);
+}
+.baag .bag-content .detail-poke .card .card-body{
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.5s all;
+}
+.baag .bag-content .detail-poke .card:hover .card-body{
+    opacity: 1;
+    transform: translateY(0px);
+}
+.baag .bag-content .detail-poke .card .imeg img{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
+}
+.baag .bag-content .detail-poke .card .card-body .row .idp{
+    padding: 0px;
+    padding-top: 8px;
+    font-size: 12px;
+}
+.baag .bag-content .detail-poke .card .card-body .row .typ{
+    padding: 0px;
+    padding-top: 8px;
+    font-size: 12px;
+}
+.baag .bag-content .detail-poke .card .card-body .row .rmp{
+    margin-left: 40px;
+}
+.baag .bag-content .detail-poke .card .card-body .row .col .row .text-center{
+    /* margin-bottom: 0; */
+}
+.baag .bag-content .detail-poke .card .card-body .row .col .row .namep{
+    font-size: 24px;
+    text-transform: capitalize;
+}
+.baag .bag-content .detail-poke .card .card-body .row .col .row .heightp{
+    font-size: 12px;
+}
+.baag .bag-content .detail-poke .card .card-body .row .col .row table{
+    font-size: 12px;
+    font-weight: 600;
 }

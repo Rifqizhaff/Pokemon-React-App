@@ -5,10 +5,34 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 // import { Button, Navbar, Form } from 'react-bootstrap';
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+
+const globalState = {
+  pokemonId: 0,
+  pokemonName: 'name',
+  pokemonType: 'type',
+  pokemonHeight: 0,
+  pokemonHp: 0,
+  pokemonAtt: 0,
+  pokemonDef: 0,
+  pokemonSpd: 0,
+  pokemonImg: 'img'
+}
+
+// reducer
+function rootReducer (state = globalState, action) {
+  return state;
+}
+
+// store
+const storePoke = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={storePoke}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

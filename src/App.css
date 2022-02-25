@@ -4,15 +4,8 @@
 .apps .content{
   text-align: center;
   margin: auto;
-  width: 50%;
+  width: 60%;
   margin-top: 50px;
-}
-nav {
-  background-color: #F0EDEE;
-}
-nav .container-fluid{
-  padding-left: 200px;
-  padding-right: 200px;
 }
 .apps .content main{
   margin-top: 50px;

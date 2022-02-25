@@ -1,0 +1,21 @@
+.pokepage .pokeList .poke-content .card{
+  background-color: #f3f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.pokepage .pokeList .poke-content .card .card-body .row .col-6 .imeg img{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 200px;
+  height: 200px;
+}
+.pokepage .pokeList .poke-content .card .card-body .row .imcont{
+  padding: 25px;
+  padding-right: 0px;
+  /* background-color: aqua; */
+}
+.pokepage .pokeList .poke-content .card .card-body .row .imcont .ins{
+  background-color: #dde0e0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
