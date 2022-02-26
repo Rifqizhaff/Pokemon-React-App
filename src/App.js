@@ -31,7 +31,7 @@ function App() {
                           <a className="nav-link" ><Link to='/'> BACK </Link></a>
                       </button>
                   </div>
-                  <div className='poke-content'>
+                  <div className='poke-content mb-5'>
                     <div className='row'>
                     { bagPoke.map((pokemon, index) => 
                       <Bag 
