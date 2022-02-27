@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Bag from "./components/bag-page/Bag";
 import Search, {allPokemons, setAllPokemons, text, setText, catchPokemon, releasePokemon} from "./components/search/Search";
+import localForage from 'localforage';
 import './App.css';
 
 

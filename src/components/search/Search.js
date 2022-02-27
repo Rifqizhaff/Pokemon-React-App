@@ -3,6 +3,7 @@ import Bag from "../bag-page/Bag";
 import axios from 'axios';
 import { Alert } from "react-alert";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import * as localForage from 'localforage';
 import './Search.css'
 
 const Search = () => {
@@ -12,7 +13,9 @@ const Search = () => {
     const [text, setText] = useState("");
     const [isSearched, setIsSearched] = useState(false);
     const [count, setCount] = useState(0);
-    
+
+    const [catchFora, setCatchFora] = useState([]);
+    const [countF, setCountF] = useState(0);
     
     function handleSubmit(e) {
         e.preventDefault();
@@ -20,24 +23,13 @@ const Search = () => {
     }
 
     const getAllPokemons = async () => {
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${text}`)
-        .then(res => {
-            setAllPokemons(res.data);
+        try {
+            const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon/${text}`)
+            setAllPokemons(data);
             setIsSearched(true);
-            // console.log(isSearched);
-            // console.log(res.data);
-            // console.log(allPokemons);
-        })
-        .catch(function (error) {
-            if (error.response) {
-                alert("Pokemon Does Not Exist!");
-            } else if (error.request) {
-                alert("Pokemon Does Not Exist!");
-            } else {
-                alert("Pokemon Does Not Exist!");
-            }
+        } catch(e) {
             alert("Pokemon Does Not Exist!");
-          });
+        }
     }
     
     useEffect(()=> {
@@ -49,6 +41,34 @@ const Search = () => {
         localStorage.setItem("pokemons", JSON.stringify(catchPoke));
         localStorage.setItem("count", JSON.stringify(count));
     }, [catchPoke]);
+
+    //---------------------------------------------------------------------------
+    useEffect(()=> {
+        if(catchFora.length != 0){
+            localForage.setItem("Fora", catchFora).then(
+            );
+            localForage.setItem("countf", countF).then(
+            );
+            console.log("success set forage");
+        }
+        // console.log(catchFora);
+    }, [catchFora]);
+    
+    useEffect( async () => {
+        // console.log(localForage.getItem("Fora"));
+        try {
+            await setCatchFora(localForage.getItem("Fora"));
+            console.log(`catchFora: ${catchFora}`);
+            setCountF(localForage.getItem("countf"));
+
+        } catch(e){
+            console.log('error coy!')
+        }
+        // await setCatchFora(localForage.getItem("Fora"));
+        // console.log(`catchFora: ${catchFora}`);
+        // setCountF(localForage.getItem("countf"));
+    }, []);
+
 
   
   
@@ -78,10 +98,23 @@ const Search = () => {
         // console.log(catchPoke);
         console.log("count poke catched:" + count);
     };
+    
+    const catchForage = () => {
+        const pokemon = catchFora.filter(p => p.id === allPokemons.id)
+        if(pokemon.length === 0) {
+            if(countF != 6) {
+                // spread operator ... 
 
-    const releasePokemon = (id) => {
-      setCatchPoke(state => state.filter(poke => poke.id !== id))
-    }
+                setCatchFora([...catchFora, allPokemons]) 
+                setCountF(countF + 1)
+                alert("Success Catching a Pokemon")
+            } else {
+                alert("Bag Already has 6 Pokemons!");
+            }
+        } else {
+            alert("Already Catch this Pokemon!");
+        }
+    };
 
     function handleClick() {
         setText("");
@@ -89,8 +122,6 @@ const Search = () => {
         
     }
   
-    
-    // console.log(searchPoke);
 
     function isValid() {
         if(isSearched === true){
@@ -182,7 +213,8 @@ const Search = () => {
                             type="button" 
                             className="btn2 btn btn-warning btn-lg btn-outline-secondary ms-5 mt-4 mb-3"
                             onClick={()=>
-                                catchPokemon(allPokemons)
+                                catchForage()
+                                // console.log('pokemon')
                             }
                             >
                                 Catch
