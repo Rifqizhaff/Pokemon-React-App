@@ -94,3 +94,9 @@
     font-size: 12px;
     font-weight: 600;
 }
+.col-4 #up50 {
+    color: black;
+}
+.col-4 #down50 {
+    color: red;
+}

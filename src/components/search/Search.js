@@ -15,6 +15,7 @@ const Search = () => {
     const [count, setCount] = useState(0);
 
     const [catchFora, setCatchFora] = useState([]);
+    const [countFora, setCountFora] = useState(0);
     const [countF, setCountF] = useState(0);
     
     function handleSubmit(e) {
@@ -32,6 +33,7 @@ const Search = () => {
         }
     }
     
+    // local storage
     useEffect(()=> {
         setCatchPoke(JSON.parse( localStorage.getItem("pokemons")));
         setCount(JSON.parse(localStorage.getItem("count")));
@@ -43,77 +45,91 @@ const Search = () => {
     }, [catchPoke]);
 
     //---------------------------------------------------------------------------
+    // localForage
+    useEffect( () => {
+        const getForage = async () => {
+            try {
+                const _pokemon = await localForage.getItem("Fora");
+                setCatchFora(_pokemon);
+                setCountFora(_pokemon.length);
+            } catch (e) {
+                console.log('error!')
+            }
+        }
+        getForage();
+
+    }, []);
+    
     useEffect(()=> {
-        if(catchFora.length != 0){
-            localForage.setItem("Fora", catchFora).then(
-            );
-            localForage.setItem("countf", countF).then(
-            );
+        if(catchFora && catchFora.length !== 0){
+            localForage.setItem("Fora", catchFora);
             console.log("success set forage");
         }
-        // console.log(catchFora);
     }, [catchFora]);
     
-    useEffect( async () => {
-        // console.log(localForage.getItem("Fora"));
-        try {
-            await setCatchFora(localForage.getItem("Fora"));
-            console.log(`catchFora: ${catchFora}`);
-            setCountF(localForage.getItem("countf"));
 
-        } catch(e){
-            console.log('error coy!')
-        }
-        // await setCatchFora(localForage.getItem("Fora"));
-        // console.log(`catchFora: ${catchFora}`);
-        // setCountF(localForage.getItem("countf"));
-    }, []);
+
+    
 
 
   
   
     const catchPokemon = (pokemon) => {
-        if(count != 6){
-            setCatchPoke(state => {
-              const pokeExist = (state.filter(p => pokemon.id === p.id).length > 0);
-              if (!pokeExist) {
-                  
-                  state = [...state, pokemon]
-                  setCount(count - 1);
-                  state.sort(function (a, b) {
-                  return a.id - b.id
+        if(catchPoke){
+            if(count != 6){
+                setCatchPoke(state => {
+                  const pokeExist = (state.filter(p => pokemon.id === p.id).length > 0);
+                  if (!pokeExist) {
+                      
+                      state = [...state, pokemon]
+                      setCount(count - 1);
+                      state.sort(function (a, b) {
+                      return a.id - b.id
+                    })
+                    alert("Success Catching a Pokemon!");
+                    setCount(count + 1);
+                  }
+                  if(pokeExist) {
+                    alert("Already Catch this Pokemon!");
+                    }
+                  return state
                 })
-                alert("Success Catching a Pokemon!");
-                setCount(count + 1);
-              }
-              if(pokeExist) {
-                alert("Already Catch this Pokemon!");
-                }
-              return state
-            })
+            }
+            else {
+                alert("Bag Already has 6 Pokemons!");
+            }
+        } else {
+            setCount(count + 1);
+            setCatchPoke([allPokemons]);
         }
-        else {
-            alert("Bag Already has 6 Pokemons!");
-        }
+        
         // console.log(catchPoke);
         console.log("count poke catched:" + count);
     };
     
     const catchForage = () => {
-        const pokemon = catchFora.filter(p => p.id === allPokemons.id)
-        if(pokemon.length === 0) {
-            if(countF != 6) {
-                // spread operator ... 
+        if(catchFora) {
+            const pokem = catchFora.filter(p => p.id === allPokemons.id)
+            if (pokem.length === 0) {
+                if (countFora !== 6) {
+                    console.log("Start of pokemon catch")
+                    console.log(catchFora, allPokemons)
 
-                setCatchFora([...catchFora, allPokemons]) 
-                setCountF(countF + 1)
-                alert("Success Catching a Pokemon")
+                    setCountFora(countFora + 1)
+                    setCatchFora([...catchFora, allPokemons])
+                    console.log("Success catch pokemon")
+                    alert("Success Catching a Pokemon")
+                } else {
+                    alert("Bag Already has 6 Pokemons!");
+                }
             } else {
-                alert("Bag Already has 6 Pokemons!");
+                alert("Already Catch this Pokemon!");
             }
         } else {
-            alert("Already Catch this Pokemon!");
+            setCountFora(countFora + 1)
+            setCatchFora([allPokemons]);
         }
+
     };
 
     function handleClick() {
@@ -214,6 +230,7 @@ const Search = () => {
                             className="btn2 btn btn-warning btn-lg btn-outline-secondary ms-5 mt-4 mb-3"
                             onClick={()=>
                                 catchForage()
+                                // catchPokemon(allPokemons)
                                 // console.log('pokemon')
                             }
                             >
